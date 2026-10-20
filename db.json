@@ -1,0 +1,16 @@
+{
+    "utilisateurs": [
+        {
+            "id":"1",
+            "prenom":"jean",
+            "nom": "luc",
+            "mail": "luc@gmail.fr"
+        },        
+        {
+            "id":"2",
+            "prenom":"hipolite",
+            "nom": "hipopotamuse",
+            "mail": "hipolite@gmail.fr"
+        }
+    ]
+}
