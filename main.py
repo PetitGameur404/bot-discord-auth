@@ -24,7 +24,21 @@ liste = users["utilisateurs"]
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("Pong !")
 
-@bot.tree.command(name="verify", description="verify if your mail is on list")
+@bot.tree.command(name="login", description="verify if your mail is on list")
+async def verify(interaction: discord.Interaction, mail: str):
+    find = False
+    for user in liste:
+       if mail == user["mail"]:
+        find = True
+        break
+    if find:
+        role = interaction.guild.get_role(1562441324555149424)
+        await interaction.user.add_roles(role)
+        await interaction.response.send_message("Your mail is on list", ephemeral=True) 
+    else:
+        await interaction.response.send_message("Sorry but your mail is not on liste", ephemeral=True)
+
+@bot.tree.command(name="verify", description="But the code is send on your mailbox")
 async def verify(interaction: discord.Interaction, mail: str):
     find = False
     for user in liste:
