@@ -48,9 +48,9 @@ async def verify(interaction: discord.Interaction, mail: str):
     if find:
         role = interaction.guild.get_role(1562441324555149424)
         await interaction.user.add_roles(role)
-        await interaction.response.send_message("Your mail is on list", ephemeral=True) 
+        await interaction.response.send_message("A code as be send on your mailbox", ephemeral=True) 
     else:
-        await interaction.response.send_message("Sorry but your mail is not on liste", ephemeral=True)
+        await interaction.response.send_message("Sorry but your mail is not on our database", ephemeral=True)
 
 
 @bot.event
