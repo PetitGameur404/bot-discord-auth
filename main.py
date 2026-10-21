@@ -40,15 +40,25 @@ async def verify(interaction: discord.Interaction, mail: str):
 
 @bot.tree.command(name="verify", description="But the code is send on your mailbox")
 async def verify(interaction: discord.Interaction, mail: str):
-    find = False
+    found_user = None
     for user in liste:
        if mail == user["mail"]:
-        find = True
+        found_user = user
         break
-    if find:
+    if found_user:
         role = interaction.guild.get_role(1562441324555149424)
         await interaction.user.add_roles(role)
+<<<<<<< Updated upstream
         await interaction.response.send_message("A code as be send on your mailbox", ephemeral=True) 
+=======
+    if found_user.get("admin", False):
+        role = interaction.guild.get_role(1562505118904221858)
+        await interaction.user.add_roles(role)
+    if found_user.get("developeur", False):
+        role = interaction.guild.get_role(1562506725775515919)
+        await interaction.user.add_roles(role)
+        await interaction.response.send_message("Your mail is on list", ephemeral=True) 
+>>>>>>> Stashed changes
     else:
         await interaction.response.send_message("Sorry but your mail is not on our database", ephemeral=True)
 

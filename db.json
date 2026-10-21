@@ -4,182 +4,258 @@
             "id": "1",
             "prenom": "céline",
             "nom": "verdier",
-            "mail": "celine.verdier1@yahoo.fr"
-            
+            "mail": "celine.verdier1@yahoo.fr",
+            "admin" :false,
+            "developeur" : true
+
         },
         {
             "id": "2",
-            "prenom": "victor",
+            "prenom": "victorrrrr",
             "nom": "marion",
-            "mail": "victor.marion2@outlook.fr"
+            "mail": "victor.marion2@outlook.fr",
+            "admin" :true,
+            "developeur" : true
         },
         {
             "id": "3",
             "prenom": "françoise",
             "nom": "didier",
-            "mail": "francoise.didier3@yahoo.fr"
+            "mail": "francoise.didier3@yahoo.fr",
+            "admin" :true,
+            "developeur" : false
         },
         {
             "id": "4",
             "prenom": "paulette",
             "nom": "blot",
-            "mail": "paulette.blot4@free.fr"
+            "mail": "paulette.blot4@free.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "5",
             "prenom": "gérard",
             "nom": "guibert",
-            "mail": "gerard.guibert5@orange.fr"
+            "mail": "gerard.guibert5@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "6",
             "prenom": "juliette",
             "nom": "lenoir",
-            "mail": "juliette.lenoir6@outlook.fr"
+            "mail": "juliette.lenoir6@outlook.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "7",
             "prenom": "élise",
             "nom": "fontaine",
-            "mail": "elise.fontaine7@orange.fr"
+            "mail": "elise.fontaine7@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "8",
             "prenom": "célina",
             "nom": "leleu",
-            "mail": "celina.leleu8@outlook.fr"
+            "mail": "celina.leleu8@outlook.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "9",
             "prenom": "adèle",
             "nom": "chevallier",
-            "mail": "adele.chevallier9@gmail.fr"
+            "mail": "adele.chevallier9@gmail.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "10",
             "prenom": "andrée",
             "nom": "bouchet",
-            "mail": "andree.bouchet10@free.fr"
+            "mail": "andree.bouchet10@free.fr",
+            "admin" : false,
+            "developeur" : false
         },
         {
             "id": "11",
             "prenom": "christophe",
             "nom": "lemoine",
-            "mail": "christophe.lemoine11@gmail.fr"
+            "mail": "christophe.lemoine11@gmail.fr",
+            "admin" :true,
+            "developeur" : false
         },
         {
             "id": "12",
             "prenom": "patricia",
             "nom": "leroux",
-            "mail": "patricia.leroux12@yahoo.fr"
+            "mail": "patricia.leroux12@yahoo.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "13",
             "prenom": "agnès",
             "nom": "hoarau",
-            "mail": "agnes.hoarau13@gmail.fr"
+            "mail": "agnes.hoarau13@gmail.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "14",
             "prenom": "monique",
             "nom": "laroche",
-            "mail": "monique.laroche14@gmail.fr"
+            "mail": "monique.laroche14@gmail.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "15",
             "prenom": "emmanuel",
             "nom": "simon",
-            "mail": "emmanuel.simon15@yahoo.fr"
+            "mail": "emmanuel.simon15@yahoo.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "16",
             "prenom": "henri",
             "nom": "costa",
-            "mail": "henri.costa16@free.fr"
+            "mail": "henri.costa16@free.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "17",
             "prenom": "louis",
             "nom": "dias",
-            "mail": "louis.dias17@outlook.fr"
+            "mail": "louis.dias17@outlook.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "18",
             "prenom": "philippine",
             "nom": "gilbert",
-            "mail": "philippine.gilbert18@gmail.fr"
+            "mail": "philippine.gilbert18@gmail.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "19",
             "prenom": "élisabeth",
             "nom": "blanc",
-            "mail": "elisabeth.blanc19@orange.fr"
+            "mail": "elisabeth.blanc19@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "20",
             "prenom": "étienne",
             "nom": "lambert",
-            "mail": "etienne.lambert20@free.fr"
+            "mail": "etienne.lambert20@free.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "21",
             "prenom": "josette",
             "nom": "laroche",
-            "mail": "josette.laroche21@free.fr"
+            "mail": "josette.laroche21@free.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "22",
             "prenom": "claude",
             "nom": "ribeiro",
-            "mail": "claude.ribeiro22@orange.fr"
+            "mail": "claude.ribeiro22@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "23",
             "prenom": "nathalie",
             "nom": "lemaître",
-            "mail": "nathalie.lemaitre23@yahoo.fr"
+            "mail": "nathalie.lemaitre23@yahoo.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "24",
             "prenom": "lucy",
             "nom": "lacroix",
-            "mail": "lucy.lacroix24@outlook.fr"
+            "mail": "lucy.lacroix24@outlook.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "25",
             "prenom": "michel",
             "nom": "cousin",
-            "mail": "michel.cousin25@gmail.fr"
+            "mail": "michel.cousin25@gmail.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "26",
             "prenom": "luce",
             "nom": "salmon",
-            "mail": "luce.salmon26@orange.fr"
+            "mail": "luce.salmon26@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "27",
             "prenom": "lucy",
             "nom": "pires",
-            "mail": "lucy.pires27@yahoo.fr"
+            "mail": "lucy.pires27@yahoo.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "28",
             "prenom": "pénélope",
             "nom": "lagarde",
-            "mail": "penelope.lagarde28@outlook.fr"
+            "mail": "penelope.lagarde28@outlook.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "29",
             "prenom": "nath",
             "nom": "devaux",
-            "mail": "nath.devaux29@orange.fr"
+            "mail": "nath.devaux29@orange.fr",
+            "admin" :false,
+            "developeur" : false
         },
         {
             "id": "30",
             "prenom": "grégoire",
             "nom": "ollivier",
-            "mail": "gregoire.ollivier30@gmail.fr"
+            "mail": "gregoire.ollivier30@gmail.fr",
+            "admin" :false,
+            "developeur" : false
+        },
+       {
+            "id": "31",
+            "prenom": "capucine",
+            "nom": "de-rivier",
+            "mail": "capucine.drv@gmail.fr",
+            "admin" :false,
+            "developeur" : false
+        },
+     {
+            "id": "32",
+            "prenom": "BBR",
+            "nom": "de-rivier",
+            "mail": "BRR.drv@gmail.fr",
+            "admin" :false,
+            "developeur" : true
         }
     ]
 }
