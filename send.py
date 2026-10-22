@@ -1,5 +1,7 @@
 import os
 import smtplib
+import secrets
+import json
 from email.message import EmailMessage
 from dotenv import load_dotenv
 
@@ -11,6 +13,19 @@ SMTP_SERVER = os.getenv('SMTP_SERVER')
 MAIL_USERNAME = os.getenv('MAIL_USERNAME')
 MAIL_PORT = os.getenv('MAIL_PORT')
 
+code = "".join(str(n) for n in secrets.SystemRandom().sample(range(10), 4))
+
+user_id = "31"
+
+
+with open("db.json", "r") as f:
+    data = json.load(f)
+
+    data[user_id] = code
+
+    with open("db.json", "w") as f:
+        json.dump(data, f, indent=2)
+
 # Créer un nouvel objet email
 email = EmailMessage()
 
@@ -20,11 +35,12 @@ email['To'] = MAIL_TO
 email['Subject'] = 'Mail send by python'
 
 # Ajouter le contenu HTML
-html_content = """
+html_content = f"""
 <html>
   <body>
     <h1>Hi!</h1>
     <p>send <b>email</b> with <i>Python</i>.</p>
+    <p><b>code:</b> {code} </p>
   </body>
 </html>
 """
