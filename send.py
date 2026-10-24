@@ -15,6 +15,13 @@ MAIL_PORT = os.getenv('MAIL_PORT')
 
 code = "".join(str(n) for n in secrets.SystemRandom().sample(range(10), 4))
 
+codetest = int(input("code envoye : "))
+
+if codetest == code:
+    print("bon code")
+else:
+    print("retry")
+
 user_id = "31"
 
 
