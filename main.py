@@ -120,7 +120,7 @@ def list_accounts(guild_id: int):
         )
         return cur.fetchall()
 
-def all_accounts(guild_id: int):
+def total_accounts(guild_id: int):
     with sqlite3.connect(DB_PATH) as conn:
         cur = conn.execute(
             "SELECT COUNT(*) FROM users WHERE guild_id = ?",
@@ -270,19 +270,17 @@ class AdminView(ui.View):
         )
         await interaction.response.send_message(embed=embed, ephemeral=True)
     
-    @ui.button(label="total accounts", emoji="\U0001F4CB", style=discord.ButtonStyle.secondary, custom_id="admin_list")
+    @ui.button(label="Total accounts", emoji="\U0001F4CB", style=discord.ButtonStyle.secondary, custom_id="admin_total")
     async def total_button(self, interaction: discord.Interaction, button: ui.Button):
-        accounts = list_accounts(interaction.guild_id)
+        total = total_accounts(interaction.guild_id)
 
-        if not accounts:
+        if total == 0:
             await interaction.response.send_message("No accounts on this server.", ephemeral=True)
             return
 
-        lines = [f"**{name} {last_name}** - {mail}" for name, last_name, mail, _ in accounts]
-
         embed = discord.Embed(
-            title=f"Accounts ({len(accounts)})",
-            description="\n".join(lines)[:4000],
+            title="Accounts registered",
+            description=f"Total: **{total}**",
             color=0x5865F2,
         )
         await interaction.response.send_message(embed=embed, ephemeral=True)
