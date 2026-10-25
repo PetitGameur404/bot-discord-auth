@@ -107,24 +107,46 @@ def create_account(prenom, nom, mail):
 # class create_modal(ui.Modal, title="Create account"):
 #     prenom = ui.Label(text='Name', component)
 
-class Questionnaire(ui.Modal, title='Questionnaire Response'):
-    name = ui.Label(text='Name', component=ui.TextInput(placeholder = "Name"))
-    lastname = ui.Label(text='Lastname', component=ui.TextInput(placeholder = "Lastname"))
+class Register_modal(ui.Modal, title='Questionnaire Response',):
+    prenom = ui.Label(text='Name', component=ui.TextInput(placeholder = "Name"))
+    nom = ui.Label(text='Lastname', component=ui.TextInput(placeholder = "Lastname"))
     mail = ui.Label(text='Mail', component=ui.TextInput(placeholder = "Mail"))
 
+
     async def on_submit(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f'Your value {self.lastname.component.value}, {self.name.component.value}, {self.mail.component.value}!', ephemeral=True)
+        prenom = self.prenom.component.value
+        nom = self.nom.component.value
+        mail = self.mail.component.value
+
+        if create_account(prenom, nom, mail):
+            await interaction.response.send_message(f'Welcome, {self.prenom.component.value}! account create with succes use /login now', ephemeral=True)
+        else:
+            await interaction.response.send_message("Account already exists, use /login", ephemeral=True)
 
 
 @bot.tree.command(name="ping")
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("Pong !")
 
+@bot.tree.command(name="help", description="How to use bot")
+async def help(interaction: discord.Interaction):
+    embed=discord.Embed(title="YOU NEED HELP ! (this link of the official documentation)", url="https://tdoc-documentation.netlify.app/", description="dont stress i'm ready to help you", color=0xff79c6)
+    embed.set_author(name="PetitGameur404", url="https://lucahallet.com", icon_url="https://media.discordapp.net/attachments/1318216081160015974/1563886806615855214/discord-avatar-petitgameur1.png?ex=6adf4296&is=6addf116&hm=e54d8ed43d4f41fd54b12e275c83829d1cea5226314114c9b4b62f55376b17cc&=&format=webp&quality=lossless")
+    embed.add_field(name="/help", value="helps you understand what each command is used for", inline=True)
+    embed.add_field(name="/ping", value="check the bot's ping and see if it's working", inline=True)
+    embed.add_field(name="/setup", value="allows for sending an embed with a button that opens the account creation modal", inline=True)
+    embed.add_field(name="/login", value="allows users to log in to their account", inline=True)
+    embed.add_field(name="/verify", value="allows the user to enter the code sent via email for added security", inline=True)
+    embed.add_field(name="/register", value="allows for account creation without using the modal, by doing it manually instead", inline=True)
+    embed.set_image(url="https://images-ext-1.discordapp.net/external/JBXaMUJbwNe7xy-Lm_WmVSU5C32KHxu3VOzKoqLlDZE/https/i.pinimg.com/736x/97/62/ae/9762ae972a93213643d599e5cf76910a.jpg?format=webp")
+    embed.set_footer(text="thank's for reading")
+    await interaction.response.send_message(embed=embed)
+
 
 @bot.tree.command(name="login", description="Receive a code by mail")
 async def login(interaction: discord.Interaction, mail: str):
     if not mail_existe(mail):
-        await interaction.response.send_message("Sorry but your mail is not on list", ephemeral=True)
+        await interaction.response.send_message("Sorry but your mail is not on list", ephemeral=Trktue)
         return
 
     await interaction.response.defer(ephemeral=True)
@@ -163,6 +185,11 @@ async def setup(interaction: discord.Interaction):
               custom_id="create_account" 
               )
 
+          async def button_callback(interaction: discord.Interaction):
+              await interaction.response.send_modal(Register_modal())
+
+          button.callback = button_callback
+
           view = discord.ui.View(timeout=None)
           view.add_item(button)
           
@@ -172,9 +199,9 @@ async def setup(interaction: discord.Interaction):
           embed.add_field(name="3", value="step 3: verify by code send to your mailbox", inline=False)
           await interaction.response.send_message(embed=embed, view=view)
 
-@bot.tree.command(name="modal", description="modal test")
-async def modal(interaction: discord.Interaction):
-    await interaction.response.send_modal(Questionnaire())
+# @bot.tree.command(name="modal", description="modal test")
+# async def modal(interaction: discord.Interaction):
+#     await interaction.response.send_modal(Questionnaire())
 
 
 @bot.event
