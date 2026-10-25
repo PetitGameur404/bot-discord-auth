@@ -7,6 +7,7 @@ from email.message import EmailMessage
 
 import discord
 from discord.ext import commands
+from discord import ui
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -103,6 +104,18 @@ def create_account(prenom, nom, mail):
         return False
 
 
+# class create_modal(ui.Modal, title="Create account"):
+#     prenom = ui.Label(text='Name', component)
+
+class Questionnaire(ui.Modal, title='Questionnaire Response'):
+    name = ui.Label(text='Name', component=ui.TextInput(placeholder = "Name"))
+    lastname = ui.Label(text='Lastname', component=ui.TextInput(placeholder = "Lastname"))
+    mail = ui.Label(text='Mail', component=ui.TextInput(placeholder = "Mail"))
+
+    async def on_submit(self, interaction: discord.Interaction):
+        await interaction.response.send_message(f'Your value {self.lastname.component.value}, {self.name.component.value}, {self.mail.component.value}!', ephemeral=True)
+
+
 @bot.tree.command(name="ping")
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("Pong !")
@@ -159,6 +172,9 @@ async def setup(interaction: discord.Interaction):
           embed.add_field(name="3", value="step 3: verify by code send to your mailbox", inline=False)
           await interaction.response.send_message(embed=embed, view=view)
 
+@bot.tree.command(name="modal", description="modal test")
+async def modal(interaction: discord.Interaction):
+    await interaction.response.send_modal(Questionnaire())
 
 
 @bot.event
