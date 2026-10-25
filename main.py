@@ -5,11 +5,14 @@ import smtplib
 import sqlite3
 from datetime import datetime, timezone
 from email.message import EmailMessage
+from pathlib import Path
 
 import discord
 from discord import app_commands, ui
 from discord.ext import commands
 from dotenv import load_dotenv
+
+TEMPLATE_PATH = Path(__file__).parent / "templates" / "email_code.html"
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
@@ -54,6 +57,11 @@ def mail_existe(mail: str) -> bool:
         return cur.fetchone() is not None
 
 
+def build_code_email(code: str) -> str:
+    html = TEMPLATE_PATH.read_text(encoding="utf-8")
+    return html.replace("{{CODE}}", code)
+
+
 def send_code(mail: str):
     code = f"{secrets.randbelow(1000000):06d}"
 
@@ -65,17 +73,9 @@ def send_code(mail: str):
     email = EmailMessage()
     email['From'] = MAIL_FORM
     email['To'] = mail
-    email['Subject'] = 'Verification code'
+    email['Subject'] = 'Dracula Auth - Verification code'
     email.set_content(f"Your verification code is: {code}")
-    email.add_alternative(f"""
-    <html>
-      <body>
-        <h1>Hi!</h1>
-        <p>This is your <b>code</b> for <i>connect</i>.</p>
-        <p><b>code:</b> {code}</p>
-      </body>
-    </html>
-    """, subtype='html')
+    email.add_alternative(build_code_email(code), subtype="html")
 
     with smtplib.SMTP(SMTP_SERVER, MAIL_PORT) as server:
         server.starttls()
