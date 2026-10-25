@@ -283,6 +283,11 @@ class AdminView(ui.View):
             description=f"Total: **{total}**",
             color=0x5865F2,
         )
+        embed.set_image(url="https://media.discordapp.net/attachments/1318216081160015974/1563917918654169088/banniere-dracula-auth.png?ex=6adf5f8f&is=6ade0e0f&hm=dcffbc96c95aee93c66efde8512920c62fea688128f4fdc9621baaade9fe3c87&=&format=webp&quality=lossless&width=2048&height=683")
+        embed.set_footer(
+        text="Dracula Auth by PetitGameur404",
+        icon_url="https://media.discordapp.net/attachments/1318216081160015974/1563914149052817408/a363495a-ecec-43c7-aaed-fc6ab91c291e.png?ex=6adf5c0d&is=6ade0a8d&hm=870579e4aa502a7c4fe051174e2db37d869a07f5bb942b9fea514a44ddcfd646&=&format=webp&quality=lossless",
+         )
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
     @ui.button(label="Create account", emoji="\u2795", style=discord.ButtonStyle.primary, custom_id="admin_create")
@@ -332,6 +337,11 @@ async def setup(interaction: discord.Interaction):
     embed.add_field(name="1", value="Step 1: register", inline=False)
     embed.add_field(name="2", value="Step 2: login", inline=False)
     embed.add_field(name="3", value="Step 3: verify with the code sent to your mailbox", inline=False)
+    embed.set_image(url="https://media.discordapp.net/attachments/1318216081160015974/1563917918654169088/banniere-dracula-auth.png?ex=6adf5f8f&is=6ade0e0f&hm=dcffbc96c95aee93c66efde8512920c62fea688128f4fdc9621baaade9fe3c87&=&format=webp&quality=lossless&width=2048&height=683")
+    embed.set_footer(
+        text="Dracula Auth by PetitGameur404",
+        icon_url="https://media.discordapp.net/attachments/1318216081160015974/1563914149052817408/a363495a-ecec-43c7-aaed-fc6ab91c291e.png?ex=6adf5c0d&is=6ade0a8d&hm=870579e4aa502a7c4fe051174e2db37d869a07f5bb942b9fea514a44ddcfd646&=&format=webp&quality=lossless",
+         )
 
     channel = bot.get_channel(SETUP_CHANNEL)
     if channel is None:
