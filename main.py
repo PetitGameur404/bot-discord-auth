@@ -92,7 +92,6 @@ def verify_code(mail: str, saisi: str) -> bool:
             return True
         return False
 
-
 def create_account(name: str, last_name: str, mail: str, guild_id: int) -> bool:
     try:
         with sqlite3.connect(DB_PATH) as db:
@@ -103,7 +102,6 @@ def create_account(name: str, last_name: str, mail: str, guild_id: int) -> bool:
         return True
     except sqlite3.IntegrityError:
         return False
-
 
 def delete_account(mail: str, guild_id: int) -> bool:
     with sqlite3.connect(DB_PATH) as db:
