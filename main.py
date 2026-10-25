@@ -75,7 +75,7 @@ def send_code(mail: str):
     email['To'] = mail
     email['Subject'] = 'Dracula Auth - Verification code'
     email.set_content(f"Your verification code is: {code}")
-    email.add_alternative(build_code_email(code), subtype="html")
+    email.add_alternative(build_code_email(code), subtype="html") 
 
     with smtplib.SMTP(SMTP_SERVER, MAIL_PORT) as server:
         server.starttls()
