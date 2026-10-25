@@ -17,6 +17,7 @@ MAIL_FORM = os.getenv('MAIL_FORM')
 SMTP_SERVER = os.getenv('SMTP_SERVER')
 MAIL_USERNAME = os.getenv('MAIL_USERNAME')
 MAIL_PORT = int(os.getenv('MAIL_PORT'))
+SETUP_CHANNEL = int(os.getenv('SETUP_CHANNEL'))
 
 intents = discord.Intents.default()
 intents.members = True
@@ -126,7 +127,7 @@ class Register_modal(ui.Modal, title='Questionnaire Response',):
 
 @bot.tree.command(name="ping")
 async def ping(interaction: discord.Interaction):
-    await interaction.response.send_message("Pong !")
+    await interaction.response.send_message(f"Pong ! Bot latency: **{round(bot.latency * 1000)}ms**")
 
 @bot.tree.command(name="help", description="How to use bot")
 async def help(interaction: discord.Interaction):
@@ -140,7 +141,7 @@ async def help(interaction: discord.Interaction):
     embed.add_field(name="/register", value="allows for account creation without using the modal, by doing it manually instead", inline=True)
     embed.set_image(url="https://images-ext-1.discordapp.net/external/JBXaMUJbwNe7xy-Lm_WmVSU5C32KHxu3VOzKoqLlDZE/https/i.pinimg.com/736x/97/62/ae/9762ae972a93213643d599e5cf76910a.jpg?format=webp")
     embed.set_footer(text="thank's for reading")
-    await interaction.response.send_message(embed=embed)
+    await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
 @bot.tree.command(name="login", description="Receive a code by mail")
@@ -176,12 +177,12 @@ async def register(interaction: discord.Interaction, prenom: str, nom: str, mail
     else:
         await interaction.response.send_message("Account already existe use /login", ephemeral=True)
 
-@bot.tree.command(name="setup", description="Embed to open modal for register")
-async def setup(interaction: discord.Interaction):
+@bot.hybrid_command(name="setup", description="Embed to open modal for register")
+async def setup(ctx: commands.Context):
           button = discord.ui.Button(
               style = discord.ButtonStyle.primary,
               label = "create account !",
-              emoji="😎",
+              emoji="➕",
               custom_id="create_account" 
               )
 
@@ -197,7 +198,10 @@ async def setup(interaction: discord.Interaction):
           embed.add_field(name="1", value="step 1: register", inline=False)
           embed.add_field(name="2", value="step 2: login", inline=False)
           embed.add_field(name="3", value="step 3: verify by code send to your mailbox", inline=False)
-          await interaction.response.send_message(embed=embed, view=view)
+          channelSetup = bot.get_channel(SETUP_CHANNEL)
+          await channelSetup.send(embed=embed, view=view)
+
+          await ctx.send("Setup channel sent!", ephemeral=True)
 
 # @bot.tree.command(name="modal", description="modal test")
 # async def modal(interaction: discord.Interaction):
