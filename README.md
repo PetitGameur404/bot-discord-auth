@@ -46,7 +46,7 @@ Admins can see and manage accounts from the **admin panel**.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/TODO/bot-auth.git
+git clone https://github.com/PetitGameur404/dracula-auth-bot.git
 cd bot-auth
 
 # 2. Create a virtual environment
