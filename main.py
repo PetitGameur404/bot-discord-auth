@@ -141,6 +141,26 @@ async def register(interaction: discord.Interaction, prenom: str, nom: str, mail
     else:
         await interaction.response.send_message("Account already existe use /login", ephemeral=True)
 
+@bot.tree.command(name="setup", description="Embed to open modal for register")
+async def setup(interaction: discord.Interaction):
+          button = discord.ui.Button(
+              style = discord.ButtonStyle.primary,
+              label = "create account !",
+              emoji="😎",
+              custom_id="create_account" 
+              )
+
+          view = discord.ui.View(timeout=None)
+          view.add_item(button)
+          
+          embed=discord.Embed(title="Open an account now !", description="Welcom click on button to create your first account", color=0xff0000)
+          embed.add_field(name="1", value="step 1: register", inline=False)
+          embed.add_field(name="2", value="step 2: login", inline=False)
+          embed.add_field(name="3", value="step 3: verify by code send to your mailbox", inline=False)
+          await interaction.response.send_message(embed=embed, view=view)
+
+
+
 @bot.event
 async def on_ready():
     activity = discord.CustomActivity(name="I verify !", emoji="â")
