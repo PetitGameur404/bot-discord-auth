@@ -60,7 +60,7 @@ def send_code(mail):
     with sqlite3.connect(DB_PATH) as db:
         cur = db.execute("UPDATE users SET code = ? WHERE mail = ?", (code, mail))
         if cur.rowcount == 0:
-            raise ValueError(f"Aucun utilisateur avec le mail {mail}")
+            raise ValueError(f"Any user with this mail {mail}")
 
     email = EmailMessage()
     email['From'] = MAIL_FORM
@@ -89,6 +89,17 @@ def verify_code(mail, saisi):
         if row and row[0] is not None and secrets.compare_digest(row[0], saisi):
             db.execute("UPDATE users SET code = NULL WHERE mail = ?", (mail,))
             return True
+        return False
+
+def create_account(prenom, nom, mail):
+    try:
+        with sqlite3.connect(DB_PATH) as db:
+            db.execute(
+                "INSERT INTO users (prenom, nom, mail) VALUES (?, ?, ?)",
+                (prenom, nom, mail),
+            )
+        return True
+    except sqlite3.IntegrityError:
         return False
 
 
@@ -123,6 +134,12 @@ async def verify(interaction: discord.Interaction, mail: str, saisi: str):
     else:
         await interaction.response.send_message("Wrong code", ephemeral=True)
 
+@bot.tree.command(name="register", description="Create account")
+async def register(interaction: discord.Interaction, prenom: str, nom: str, mail: str):
+    if create_account(prenom, nom, mail):
+        await interaction.response.send_message("Your account is create with succes ! use /login for login with your account", ephemeral=True)
+    else:
+        await interaction.response.send_message("Account already existe use /login", ephemeral=True)
 
 @bot.event
 async def on_ready():
