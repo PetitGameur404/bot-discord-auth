@@ -120,6 +120,14 @@ def list_accounts(guild_id: int):
         )
         return cur.fetchall()
 
+def all_accounts(guild_id: int):
+    with sqlite3.connect(DB_PATH) as conn:
+        cur = conn.execute(
+            "SELECT COUNT(*) FROM users WHERE guild_id = ?",
+            (guild_id,),
+        )
+        return cur.fetchall()[0]
+
 
 async def give_role(interaction: discord.Interaction) -> bool:
     role = interaction.guild.get_role(ROLE_ID)
@@ -247,6 +255,23 @@ class AdminView(ui.View):
 
     @ui.button(label="List accounts", emoji="\U0001F4CB", style=discord.ButtonStyle.secondary, custom_id="admin_list")
     async def list_button(self, interaction: discord.Interaction, button: ui.Button):
+        accounts = list_accounts(interaction.guild_id)
+
+        if not accounts:
+            await interaction.response.send_message("No accounts on this server.", ephemeral=True)
+            return
+
+        lines = [f"**{name} {last_name}** - {mail}" for name, last_name, mail, _ in accounts]
+
+        embed = discord.Embed(
+            title=f"Accounts ({len(accounts)})",
+            description="\n".join(lines)[:4000],
+            color=0x5865F2,
+        )
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+    
+    @ui.button(label="total accounts", emoji="\U0001F4CB", style=discord.ButtonStyle.secondary, custom_id="admin_list")
+    async def total_button(self, interaction: discord.Interaction, button: ui.Button):
         accounts = list_accounts(interaction.guild_id)
 
         if not accounts:
